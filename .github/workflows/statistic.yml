@@ -1,0 +1,29 @@
+name: Cron Job
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: pip install pandas
+      - run: python social.py
+        env:
+          YOUTUBEKEY: ${{ secrets.YOUTUBEKEY }}
+      - run: |
+          mkdir gh-pages
+          mv social.csv gh-pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: public
