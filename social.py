@@ -57,7 +57,7 @@ def update(github_repo, youtube_channel_id, youtube_key, linkedin_id, stackoverf
         "Linkedin": [get_linkedin_followers(linkedin_id=linkedin_id)], 
         "Youtube": [get_youtube_subs(youtube_channel_id=youtube_channel_id, youtube_key=youtube_key)], 
         "Stackoverflow": [get_stackoverflow_questions(stackoverflow_tag=stackoverflow_tag)]
-    }))
+    }), ignore_index=True)
     
 
 df = update(
