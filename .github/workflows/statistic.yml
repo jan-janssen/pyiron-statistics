@@ -20,8 +20,8 @@ jobs:
         env:
           YOUTUBEKEY: ${{ secrets.YOUTUBEKEY }}
       - run: |
-          mkdir gh-pages
-          mv social.csv gh-pages
+          mkdir public
+          mv social.csv public
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
