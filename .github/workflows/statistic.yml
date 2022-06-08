@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.9'
       - run: pip install pandas requests
-      - run: python .ci_suupport/social.py
+      - run: python .ci_support/social.py
         env:
           YOUTUBEKEY: ${{ secrets.YOUTUBEKEY }}
       - name: Deploy 🚀
