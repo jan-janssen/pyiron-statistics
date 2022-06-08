@@ -1,6 +1,8 @@
 name: Cron Job
 
 on:
+  repository_dispatch:
+    types: [build]
   schedule:
     - cron: "0 0 * * *"
   push:
@@ -16,14 +18,11 @@ jobs:
         with:
           python-version: '3.9'
       - run: pip install pandas requests
-      - run: python social.py
+      - run: python .ci_suupport/social.py
         env:
           YOUTUBEKEY: ${{ secrets.YOUTUBEKEY }}
-      - run: |
-          mkdir public
-          mv social.csv public
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          branch: gh-pages
-          folder: public
+          branch: main
+          folder: .
